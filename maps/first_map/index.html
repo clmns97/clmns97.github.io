@@ -1,77 +1,60 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="viewport"
-      content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width"
-    />
-    <meta name="mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <link rel="stylesheet" href="css/leaflet.css" />
-    <link rel="stylesheet" href="css/qgis2web.css" />
-    <link rel="stylesheet" href="css/fontawesome-all.min.css" />
-    <style>
-      html,
-      body,
-      #map {
-        width: 100%;
-        height: 100%;
-        padding: 0;
-        margin: 0;
-      }
-    </style>
-    <title></title>
-  </head>
-  <body>
-    <div id="map"></div>
-    <script src="js/qgis2web_expressions.js"></script>
-    <script src="js/leaflet.js"></script>
-    <script src="js/leaflet.rotatedMarker.js"></script>
-    <script src="js/leaflet.pattern.js"></script>
-    <script src="js/leaflet-hash.js"></script>
-    <script src="js/Autolinker.min.js"></script>
-    <script src="js/rbush.min.js"></script>
-    <script src="js/labelgun.min.js"></script>
-    <script src="js/labels.js"></script>
-    <script src="data/Erdwrmepotenzial_1.js"></script>
-    <script>
-      var map = L.map("map", {
-        zoomControl: true,
-        maxZoom: 20,
-        minZoom: 10,
-      }).fitBounds([
-        [48.10015869767472, 16.171450310775718],
-        [48.340134261178335, 16.588248576518467],
-      ]).setView([48.175199, 16.403278],17);
-      var hash = new L.Hash(map);
-      map.attributionControl.setPrefix(
-        '<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>'
-      );
-      var autolinker = new Autolinker({
-        truncate: { length: 30, location: "smart" },
-      });
-      var bounds_group = new L.featureGroup([]);
-      function setBounds() {}
-      map.createPane("pane_OSMStandard_0");
-      map.getPane("pane_OSMStandard_0").style.zIndex = 400;
-      var layer_OSMStandard_0 = L.tileLayer(
-        "http://tile.openstreetmap.org/{z}/{x}/{y}.png",
-        {
-          pane: "pane_OSMStandard_0",
-          opacity: 1.0,
-          attribution:
-            '<a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors, CC-BY-SA</a>',
-          minZoom: 10,
-          maxZoom: 28,
-          minNativeZoom: 0,
-          maxNativeZoom: 19,
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
         }
-      );
-      layer_OSMStandard_0;
-      map.addLayer(layer_OSMStandard_0);
-      // Style URL format in XYZ PNG format; see our documentation for more options
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="data/PotenzialkarteThermischeGrundwassernutzung_1.js"></script>
+        <script src="data/PotenzialkarteErdwrmesondenbis100m_2.js"></script>
+        <script src="data/nemelkagasse_3.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:20, minZoom:10
+        }).fitBounds([[48.175180773008144,16.401802360527533],[48.17678051793167,16.404426339472458]]);
+        var hash = new L.Hash(map);
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        map.createPane('pane_OSMStandard_0');
+        map.getPane('pane_OSMStandard_0').style.zIndex = 400;
+        var layer_OSMStandard_0 = L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            pane: 'pane_OSMStandard_0',
+            opacity: 1.0,
+            attribution: '<a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors, CC-BY-SA</a>',
+            minZoom: 10,
+            maxZoom: 20,
+            minNativeZoom: 0,
+            maxNativeZoom: 19
+        });
+        layer_OSMStandard_0;
+        // Style URL format in XYZ PNG format; see our documentation for more options
       L.tileLayer(
         "https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png",
         {
@@ -80,97 +63,255 @@
             '&copy; <a href="https://stadiamaps.com/" target="_blank">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>',
         }
       ).addTo(map);
-
-      function pop_Erdwrmepotenzial_1(feature, layer) {
-        var popupContent =
-          '<table>\
+        function pop_PotenzialkarteThermischeGrundwassernutzung_1(feature, layer) {
+            var popupContent = '<table>\
                     <tr>\
-                        <td colspan="2">' +
-          (feature.properties["TEXT_100M"] !== null
-            ? autolinker.link(feature.properties["TEXT_100M"].toLocaleString())
-            : "") +
-          "</td>\
+                        <td colspan="2">' + (feature.properties['POTENZIAL_HINWEIS'] !== null ? autolinker.link(feature.properties['POTENZIAL_HINWEIS'].toLocaleString()) : '') + '</td>\
                     </tr>\
-                </table>";
-        layer.bindPopup(popupContent, { maxHeight: 400 });
-      }
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
 
-      function style_Erdwrmepotenzial_1_0(feature) {
-        if (
-          feature.properties["WLF_100M"] >= 0.0 &&
-          feature.properties["WLF_100M"] <= 1.8
-        ) {
-          return {
-            pane: "pane_Erdwrmepotenzial_1",
-            stroke: false,
-            fill: true,
-            fillOpacity: 1,
-            fillColor: "rgba(251,154,153,0.5)",
-            interactive: true,
-          };
+        function style_PotenzialkarteThermischeGrundwassernutzung_1_0(feature) {
+            switch(String(feature.properties['POTENZIAL_TXT'])) {
+                case '< 1 kW':
+                    return {
+                pane: 'pane_PotenzialkarteThermischeGrundwassernutzung_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.5)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(227,26,28,0.5)',
+                interactive: true,
+            }
+                    break;
+                case '1 kW bis < 5 kW':
+                    return {
+                pane: 'pane_PotenzialkarteThermischeGrundwassernutzung_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.5)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(168,71,33,0.5)',
+                interactive: true,
+            }
+                    break;
+                case '5 kW bis < 20 kW':
+                    return {
+                pane: 'pane_PotenzialkarteThermischeGrundwassernutzung_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.5)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(110,115,39,0.5)',
+                interactive: true,
+            }
+                    break;
+                case '> 20 kW':
+                    return {
+                pane: 'pane_PotenzialkarteThermischeGrundwassernutzung_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.5)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(51,160,44,0.5)',
+                interactive: true,
+            }
+                    break;
+            }
         }
-        if (
-          feature.properties["WLF_100M"] >= 1.8 &&
-          feature.properties["WLF_100M"] <= 1.9
-        ) {
-          return {
-            pane: "pane_Erdwrmepotenzial_1",
-            stroke: false,
-            fill: true,
-            fillOpacity: 1,
-            fillColor: "rgba(227,177,148,0.5)",
+        map.createPane('pane_PotenzialkarteThermischeGrundwassernutzung_1');
+        map.getPane('pane_PotenzialkarteThermischeGrundwassernutzung_1').style.zIndex = 401;
+        map.getPane('pane_PotenzialkarteThermischeGrundwassernutzung_1').style['mix-blend-mode'] = 'normal';
+        var layer_PotenzialkarteThermischeGrundwassernutzung_1 = new L.geoJson(json_PotenzialkarteThermischeGrundwassernutzung_1, {
+            attribution: '&copy; <a href="https://www.data.gv.at/katalog/de/dataset/stadt-wien_potenzialkartethermischegrundwassernutzungwien" target="_blank">Stadt Wien</a>',
             interactive: true,
-          };
+            dataVar: 'json_PotenzialkarteThermischeGrundwassernutzung_1',
+            layerName: 'layer_PotenzialkarteThermischeGrundwassernutzung_1',
+            pane: 'pane_PotenzialkarteThermischeGrundwassernutzung_1',
+            onEachFeature: pop_PotenzialkarteThermischeGrundwassernutzung_1,
+            style: style_PotenzialkarteThermischeGrundwassernutzung_1_0,
+        });
+        bounds_group.addLayer(layer_PotenzialkarteThermischeGrundwassernutzung_1);
+        function pop_PotenzialkarteErdwrmesondenbis100m_2(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['KLASSE_100_TXT'] !== null ? autolinker.link(feature.properties['KLASSE_100_TXT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
         }
-        if (
-          feature.properties["WLF_100M"] >= 1.9 &&
-          feature.properties["WLF_100M"] <= 2.0
-        ) {
-          return {
-            pane: "pane_Erdwrmepotenzial_1",
-            stroke: false,
-            fill: true,
-            fillOpacity: 1,
-            fillColor: "rgba(202,200,143,0.5)",
+
+        function style_PotenzialkarteErdwrmesondenbis100m_2_0(feature) {
+            if (feature.properties['MW_WL_100'] >= 0.000000 && feature.properties['MW_WL_100'] <= 1.800000 ) {
+                return {
+                pane: 'pane_PotenzialkarteErdwrmesondenbis100m_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.5)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(227,26,28,0.5)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['MW_WL_100'] >= 1.800000 && feature.properties['MW_WL_100'] <= 1.900000 ) {
+                return {
+                pane: 'pane_PotenzialkarteErdwrmesondenbis100m_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.5)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(168,71,33,0.5)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['MW_WL_100'] >= 1.900000 && feature.properties['MW_WL_100'] <= 2.000000 ) {
+                return {
+                pane: 'pane_PotenzialkarteErdwrmesondenbis100m_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.5)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(110,115,39,0.5)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['MW_WL_100'] >= 2.000000 && feature.properties['MW_WL_100'] <= 2.246544 ) {
+                return {
+                pane: 'pane_PotenzialkarteErdwrmesondenbis100m_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.5)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(51,160,44,0.5)',
+                interactive: true,
+            }
+            }
+        }
+        map.createPane('pane_PotenzialkarteErdwrmesondenbis100m_2');
+        map.getPane('pane_PotenzialkarteErdwrmesondenbis100m_2').style.zIndex = 402;
+        map.getPane('pane_PotenzialkarteErdwrmesondenbis100m_2').style['mix-blend-mode'] = 'normal';
+        var layer_PotenzialkarteErdwrmesondenbis100m_2 = new L.geoJson(json_PotenzialkarteErdwrmesondenbis100m_2, {
+            attribution: '&copy; <a href="https://www.data.gv.at/katalog/de/dataset/stadt-wien_potenzialkarteerdwrmesondenwien" target="_blank">Stadt Wien</a>',
             interactive: true,
-          };
+            dataVar: 'json_PotenzialkarteErdwrmesondenbis100m_2',
+            layerName: 'layer_PotenzialkarteErdwrmesondenbis100m_2',
+            pane: 'pane_PotenzialkarteErdwrmesondenbis100m_2',
+            onEachFeature: pop_PotenzialkarteErdwrmesondenbis100m_2,
+            style: style_PotenzialkarteErdwrmesondenbis100m_2_0,
+        });
+        bounds_group.addLayer(layer_PotenzialkarteErdwrmesondenbis100m_2);
+        function pop_nemelkagasse_3(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['full_id'] !== null ? autolinker.link(feature.properties['full_id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['osm_id'] !== null ? autolinker.link(feature.properties['osm_id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['osm_type'] !== null ? autolinker.link(feature.properties['osm_type'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['building'] !== null ? autolinker.link(feature.properties['building'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['addr:street'] !== null ? autolinker.link(feature.properties['addr:street'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['addr:postcode'] !== null ? autolinker.link(feature.properties['addr:postcode'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['addr:housenumber'] !== null ? autolinker.link(feature.properties['addr:housenumber'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['addr:country'] !== null ? autolinker.link(feature.properties['addr:country'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['addr:city'] !== null ? autolinker.link(feature.properties['addr:city'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['roof:shape'] !== null ? autolinker.link(feature.properties['roof:shape'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['name'] !== null ? autolinker.link(feature.properties['name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['roof:levels'] !== null ? autolinker.link(feature.properties['roof:levels'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['type'] !== null ? autolinker.link(feature.properties['type'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['building:levels'] !== null ? autolinker.link(feature.properties['building:levels'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
         }
-        if (
-          feature.properties["WLF_100M"] >= 2.0 &&
-          feature.properties["WLF_100M"] <= 2.05
-        ) {
-          return {
-            pane: "pane_Erdwrmepotenzial_1",
-            stroke: false,
-            fill: true,
-            fillOpacity: 1,
-            fillColor: "rgba(178,223,138,0.5)",
-            interactive: true,
-          };
+        function style_nemelkagasse_3_0() {
+            return {
+                pane: 'pane_nemelkagasse_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(152,168,223,1.0)',
+                interactive: false,
+            }
         }
-      }
-      map.createPane("pane_Erdwrmepotenzial_1");
-      map.getPane("pane_Erdwrmepotenzial_1").style.zIndex = 401;
-      map.getPane("pane_Erdwrmepotenzial_1").style["mix-blend-mode"] = "normal";
-      var layer_Erdwrmepotenzial_1 = new L.geoJson(json_Erdwrmepotenzial_1, {
-        attribution: "",
-        interactive: true,
-        dataVar: "json_Erdwrmepotenzial_1",
-        layerName: "layer_Erdwrmepotenzial_1",
-        pane: "pane_Erdwrmepotenzial_1",
-        onEachFeature: pop_Erdwrmepotenzial_1,
-        style: style_Erdwrmepotenzial_1_0,
-      });
-      bounds_group.addLayer(layer_Erdwrmepotenzial_1);
-      var baseMaps = {};
-      L.control
-        .layers(baseMaps, {
-          'Erdwärmepotenzial<br /><table><tr><td style="text-align: center;"><img src="legend/Erdwrmepotenzial_1_180.png" /></td><td>< 1,8</td></tr><tr><td style="text-align: center;"><img src="legend/Erdwrmepotenzial_1_18191.png" /></td><td>1,8 - 1,9</td></tr><tr><td style="text-align: center;"><img src="legend/Erdwrmepotenzial_1_19202.png" /></td><td>1,9 - 2,0</td></tr><tr><td style="text-align: center;"><img src="legend/Erdwrmepotenzial_1_203.png" /></td><td>> 2,0</td></tr></table>':
-            layer_Erdwrmepotenzial_1,
-          "OSM Standard": layer_OSMStandard_0,
-        })
-        .addTo(map);
-      setBounds();
-    </script>
-  </body>
+        map.createPane('pane_nemelkagasse_3');
+        map.getPane('pane_nemelkagasse_3').style.zIndex = 403;
+        map.getPane('pane_nemelkagasse_3').style['mix-blend-mode'] = 'normal';
+        var layer_nemelkagasse_3 = new L.geoJson(json_nemelkagasse_3, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_nemelkagasse_3',
+            layerName: 'layer_nemelkagasse_3',
+            pane: 'pane_nemelkagasse_3',
+            onEachFeature: pop_nemelkagasse_3,
+            style: style_nemelkagasse_3_0,
+        });
+        bounds_group.addLayer(layer_nemelkagasse_3);
+        map.addLayer(layer_nemelkagasse_3);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'Potenzialkarte Erdwärmesonden bis 100m<br /><table><tr><td style="text-align: center;"><img src="legend/PotenzialkarteErdwrmesondenbis100m_2_18WmK0.png" /></td><td>< 1,8 W/m/K</td></tr><tr><td style="text-align: center;"><img src="legend/PotenzialkarteErdwrmesondenbis100m_2_1819WmK1.png" /></td><td>1,8 - 1,9 W/m/K</td></tr><tr><td style="text-align: center;"><img src="legend/PotenzialkarteErdwrmesondenbis100m_2_1920WmK2.png" /></td><td>1,9 - 2,0 W/m/K</td></tr><tr><td style="text-align: center;"><img src="legend/PotenzialkarteErdwrmesondenbis100m_2_20WmK3.png" /></td><td>> 2,0 W/m/K</td></tr></table>': layer_PotenzialkarteErdwrmesondenbis100m_2,'Potenzialkarte Thermische Grundwassernutzung<br /><table><tr><td style="text-align: center;"><img src="legend/PotenzialkarteThermischeGrundwassernutzung_1_1kW0.png" /></td><td>< 1 kW</td></tr><tr><td style="text-align: center;"><img src="legend/PotenzialkarteThermischeGrundwassernutzung_1_1kWbis5kW1.png" /></td><td>1 kW bis < 5 kW</td></tr><tr><td style="text-align: center;"><img src="legend/PotenzialkarteThermischeGrundwassernutzung_1_5kWbis20kW2.png" /></td><td>5 kW bis < 20 kW</td></tr><tr><td style="text-align: center;"><img src="legend/PotenzialkarteThermischeGrundwassernutzung_1_20kW3.png" /></td><td>> 20 kW</td></tr></table>': layer_PotenzialkarteThermischeGrundwassernutzung_1,"OSM Standard": layer_OSMStandard_0,}).addTo(map);
+        setBounds();
+        </script>
+    </body>
 </html>
